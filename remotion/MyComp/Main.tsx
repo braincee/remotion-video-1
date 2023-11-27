@@ -1,35 +1,35 @@
-import { z } from "zod";
+import { z } from 'zod'
 import {
   AbsoluteFill,
   Sequence,
   spring,
   useCurrentFrame,
   useVideoConfig,
-} from "remotion";
-import { CompositionProps } from "../../types/constants";
-import { NextLogo } from "./NextLogo";
-import { loadFont, fontFamily } from "@remotion/google-fonts/Inter";
-import React, { useMemo } from "react";
-import { Rings } from "./Rings";
-import { TextFade } from "./TextFade";
+} from 'remotion'
+import { CompositionProps } from '../../types/constants'
+import { NextLogo } from './NextLogo'
+import { loadFont, fontFamily } from '@remotion/google-fonts/Inter'
+import React, { useMemo } from 'react'
+import { Rings } from './Rings'
+import { TextFade } from './TextFade'
 
-loadFont();
+loadFont()
 
 const container: React.CSSProperties = {
-  backgroundColor: "white",
-};
+  backgroundColor: 'white',
+}
 
 const logo: React.CSSProperties = {
-  justifyContent: "center",
-  alignItems: "center",
-};
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame()
+  const { fps } = useVideoConfig()
 
-  const transitionStart = 2 * fps;
-  const transitionDuration = 1 * fps;
+  const transitionStart = 2 * fps
+  const transitionDuration = 1 * fps
 
   const logoOut = spring({
     fps,
@@ -39,11 +39,11 @@ export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
     },
     durationInFrames: transitionDuration,
     delay: transitionStart,
-  });
+  })
 
   const titleStyle: React.CSSProperties = useMemo(() => {
-    return { fontFamily, fontSize: 70 };
-  }, []);
+    return { fontFamily, fontSize: 70 }
+  }, [])
 
   return (
     <AbsoluteFill style={container}>
@@ -59,5 +59,5 @@ export const Main = ({ title }: z.infer<typeof CompositionProps>) => {
         </TextFade>
       </Sequence>
     </AbsoluteFill>
-  );
-};
+  )
+}
