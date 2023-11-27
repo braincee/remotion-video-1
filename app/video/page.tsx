@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { Player } from "@remotion/player";
-import type { NextPage } from "next";
-import React, { useMemo, useState } from "react";
-import { Main } from "../remotion/MyComp/Main";
+import { Player } from "@remotion/player"
+import type { NextPage } from "next"
+import React, { useMemo, useState } from "react"
+import { Main } from "../../remotion/MyComp/Main"
 import {
   CompositionProps,
   defaultMyCompProps,
@@ -11,11 +11,10 @@ import {
   VIDEO_FPS,
   VIDEO_HEIGHT,
   VIDEO_WIDTH,
-} from "../types/constants";
-import { z } from "zod";
-import { RenderControls } from "../components/RenderControls";
-import { Tips } from "../components/Tips/Tips";
-import { Spacing } from "../components/Spacing";
+} from "../../types/constants"
+import { z } from "zod"
+import { Select, Option, Input, Box } from '@mui/joy'
+
 
 const container: React.CSSProperties = {
   maxWidth: 768,
@@ -61,16 +60,12 @@ const Home: NextPage = () => {
             loop
           />
         </div>
-        <RenderControls
-          text={text}
-          setText={setText}
-          inputProps={inputProps}
-        ></RenderControls>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Spacing></Spacing>
-        <Tips></Tips>
+        <Box sx={{ p: 2}}>
+          <Input placeholder='add text'/>
+          <Input placeholder='add text'/>
+          <Input placeholder='add text'/>
+        </Box>
+       
       </div>
     </div>
   );
