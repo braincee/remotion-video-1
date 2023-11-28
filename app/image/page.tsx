@@ -1,75 +1,81 @@
-"use client"
+'use client'
 
-import { Player } from "@remotion/player"
-import type { NextPage } from "next"
-import React, { useMemo, useState } from "react"
-import { Main } from "../../remotion/MyComp/Main"
+import { Player } from '@remotion/player'
+import type { NextPage } from 'next'
+import React, { useMemo, useState } from 'react'
 import {
-  CompositionProps,
-  defaultMyCompProps,
+  defaultImageCompProps,
   DURATION_IN_FRAMES,
+  imageCompSchema,
+  NEW_VIDEO_HEIGHT,
+  NEW_VIDEO_WIDTH,
   VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../../types/constants"
-import { z } from "zod"
+} from '../../types/constants'
+import { z } from 'zod'
 import { Input, Box } from '@mui/joy'
-
+import { ImageComp } from '../../remotion/NewComp/Image/ImageComp'
+import { RenderImageControls } from '../../components/RenderImageControls'
 
 const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
+  margin: 'auto',
   marginBottom: 20,
-};
+  display: 'flex',
+  padding: 10,
+}
 
 const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
+  overflow: 'hidden',
   marginBottom: 40,
   marginTop: 60,
-};
+  maxHeight: '80vh',
+  width: '65%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 const player: React.CSSProperties = {
-  width: "100%",
-};
+  width: '100%',
+}
 
-const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
+const Image: NextPage = () => {
+  const [text, setText] = useState<string>(defaultImageCompProps.titleTexts)
+  const [color, setColor] = useState(defaultImageCompProps.titleColor)
 
-  const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
+  const inputProps: z.infer<typeof imageCompSchema> = useMemo(() => {
     return {
-      title: text,
-    };
-  }, [text]);
+      titleTexts: text,
+      titleColor: color,
+    }
+  }, [text])
 
   return (
     <div>
       <div style={container}>
-        <div className="cinematics" style={outer}>
+        <div style={outer}>
           <Player
-            component={Main}
+            component={ImageComp}
             inputProps={inputProps}
             durationInFrames={DURATION_IN_FRAMES}
             fps={VIDEO_FPS}
-            compositionHeight={VIDEO_HEIGHT}
-            compositionWidth={VIDEO_WIDTH}
+            compositionHeight={NEW_VIDEO_HEIGHT}
+            compositionWidth={NEW_VIDEO_WIDTH}
             style={player}
             controls
-            autoPlay
-            loop
           />
         </div>
-        <Box sx={{ p: 2}}>
-        <Input placeholder="Color" />
-        </Box>
-        <Box sx={{ p: 2 }}>
-          <Input placeholder='Add Title Text'/>
-        </Box>
-       
+        <div style={{ width: '35%', padding: '10px' }}>
+          <RenderImageControls
+            text={text}
+            setText={setText}
+            color={color}
+            setColor={setColor}
+          />
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Image

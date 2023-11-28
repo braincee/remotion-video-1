@@ -12,8 +12,6 @@ export const LogoSequence = () => {
 
   const numDuplicates = Math.floor(videoConfig.width)
 
-  console.log(numDuplicates)
-
   return (
     <div
       style={{

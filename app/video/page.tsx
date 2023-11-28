@@ -12,8 +12,8 @@ import {
   videoCompSchema,
 } from '../../types/constants'
 import { z } from 'zod'
-import { Input, Box } from '@mui/joy'
 import { VideoComp } from '../../remotion/NewComp/Video/VideoComp'
+import { RenderVideoControls } from '../../components/RenderVideoControls'
 
 const container: React.CSSProperties = {
   margin: 'auto',
@@ -38,8 +38,11 @@ const outer: React.CSSProperties = {
 const player: React.CSSProperties = {
   width: '100%',
 }
+const control: React.CSSProperties = {
+  width: '35%',
+}
 
-const Home: NextPage = () => {
+const Video: NextPage = () => {
   const [texts, setTexts] = useState(defaultVideoCompProps.titleTexts)
   const [color, setColor] = useState(defaultVideoCompProps.titleColor)
 
@@ -49,6 +52,8 @@ const Home: NextPage = () => {
       titleColor: color,
     }
   }, [texts])
+
+  console.log(color)
 
   return (
     <div>
@@ -68,14 +73,17 @@ const Home: NextPage = () => {
             loop
           />
         </div>
-        <Box sx={{ p: 2 }}>
-          <Input placeholder='add text' />
-          <Input placeholder='add text' />
-          <Input placeholder='add text' />
-        </Box>
+        <div style={{ width: '35%', padding: '10px' }}>
+          <RenderVideoControls
+            texts={texts}
+            setTexts={setTexts}
+            color={color}
+            setColor={setColor}
+          />
+        </div>
       </div>
     </div>
   )
 }
 
-export default Home
+export default Video

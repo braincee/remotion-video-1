@@ -1,4 +1,4 @@
-import { Composition } from 'remotion'
+import { Composition, Still } from 'remotion'
 import { Main } from './MyComp/Main'
 import {
   COMP_NAME,
@@ -50,11 +50,19 @@ export const RemotionRoot: React.FC = () => {
         schema={videoCompSchema}
         defaultProps={defaultVideoCompProps}
       />
-      <Composition
+      {/* <Composition
         id='OnlyImage'
         component={ImageComp}
         durationInFrames={150}
         fps={30}
+        width={1080}
+        height={1920}
+        schema={imageCompSchema}
+        defaultProps={defaultImageCompProps}
+      /> */}
+      <Still
+        id='OnlyImage'
+        component={ImageComp}
         width={1080}
         height={1920}
         schema={imageCompSchema}
