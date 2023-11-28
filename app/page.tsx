@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Player } from "@remotion/player"
-import type { NextPage } from "next"
-import React, { useMemo, useState } from "react"
-import { Main } from "../../remotion/MyComp/Main"
+import { Player } from "@remotion/player";
+import type { NextPage } from "next";
+import React, { useMemo, useState } from "react";
+import { Main } from "../remotion/MyComp/Main";
 import {
   CompositionProps,
   defaultMyCompProps,
@@ -11,10 +11,17 @@ import {
   VIDEO_FPS,
   VIDEO_HEIGHT,
   VIDEO_WIDTH,
-} from "../../types/constants"
-import { z } from "zod"
-import { Input, Box } from '@mui/joy'
+} from "../types/constants";
+import { z } from "zod";
+import { RenderControls } from "../components/RenderControls";
+import { Tips } from "../components/Tips/Tips";
+import { Spacing } from "../components/Spacing";
 
+const container: React.CSSProperties = {
+  maxWidth: 768,
+  margin: "auto",
+  marginBottom: 20,
+};
 
 const outer: React.CSSProperties = {
   borderRadius: "var(--geist-border-radius)",
@@ -25,7 +32,7 @@ const outer: React.CSSProperties = {
 };
 
 const player: React.CSSProperties = {
-  width: 500,
+  width: "100%",
 };
 
 const Home: NextPage = () => {
@@ -38,14 +45,9 @@ const Home: NextPage = () => {
   }, [text]);
 
   return (
-    <Box sx={{ maxWidth: 768,
-               margin: "auto",
-               marginBottom: 50,
-               "@media (min-width: 768px)": {
-                display: 'flex',
-              },
-               }}>
-        <Box>
+    <div>
+      <div style={container}>
+        <div className="cinematics" style={outer}>
           <Player
             component={Main}
             inputProps={inputProps}
@@ -58,13 +60,19 @@ const Home: NextPage = () => {
             autoPlay
             loop
           />
-        <Box sx={{ p: 2 }}>
-          <Input placeholder='add text'/>
-          <Input placeholder='add text'/>
-          <Input placeholder='add text'/>
-        </Box>
-      </Box>
-    </Box>
+        </div>
+        <RenderControls
+          text={text}
+          setText={setText}
+          inputProps={inputProps}
+        ></RenderControls>
+        <Spacing></Spacing>
+        <Spacing></Spacing>
+        <Spacing></Spacing>
+        <Spacing></Spacing>
+        <Tips></Tips>
+      </div>
+    </div>
   );
 };
 

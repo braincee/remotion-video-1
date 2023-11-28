@@ -13,7 +13,7 @@ import {
   VIDEO_WIDTH,
 } from "../../types/constants"
 import { z } from "zod"
-import { Select, Option, Input, Box } from '@mui/joy'
+import { Input, Box } from '@mui/joy'
 
 
 const container: React.CSSProperties = {
@@ -61,9 +61,7 @@ const Home: NextPage = () => {
           />
         </div>
         <Box sx={{ p: 2}}>
-        <Select>
-          <Option><Input placeholder='Add Text Color'/></Option>
-          </Select>
+        <Input placeholder="Color" />
         </Box>
         <Box sx={{ p: 2 }}>
           <Input placeholder='Add Title Text'/>
