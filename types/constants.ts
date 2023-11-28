@@ -42,3 +42,7 @@ export const DURATION_IN_FRAMES = 200
 export const VIDEO_WIDTH = 1280
 export const VIDEO_HEIGHT = 720
 export const VIDEO_FPS = 30
+
+export const NEW_VIDEO_DURATION_IN_FRAMES = 810
+export const NEW_VIDEO_WIDTH = 1080
+export const NEW_VIDEO_HEIGHT = 1920

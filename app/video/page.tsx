@@ -1,74 +1,81 @@
-"use client"
+'use client'
 
-import { Player } from "@remotion/player"
-import type { NextPage } from "next"
-import React, { useMemo, useState } from "react"
-import { Main } from "../../remotion/MyComp/Main"
+import { Player } from '@remotion/player'
+import type { NextPage } from 'next'
+import React, { useMemo, useState } from 'react'
 import {
-  CompositionProps,
-  defaultMyCompProps,
-  DURATION_IN_FRAMES,
+  defaultVideoCompProps,
+  NEW_VIDEO_DURATION_IN_FRAMES,
+  NEW_VIDEO_HEIGHT,
+  NEW_VIDEO_WIDTH,
   VIDEO_FPS,
-  VIDEO_HEIGHT,
-  VIDEO_WIDTH,
-} from "../../types/constants"
-import { z } from "zod"
-import { Select, Option, Input, Box } from '@mui/joy'
-
+  videoCompSchema,
+} from '../../types/constants'
+import { z } from 'zod'
+import { Input, Box } from '@mui/joy'
+import { VideoComp } from '../../remotion/NewComp/Video/VideoComp'
 
 const container: React.CSSProperties = {
-  maxWidth: 768,
-  margin: "auto",
+  margin: 'auto',
   marginBottom: 20,
-};
+  width: '100%',
+  display: 'flex',
+}
 
 const outer: React.CSSProperties = {
-  borderRadius: "var(--geist-border-radius)",
-  overflow: "hidden",
-  boxShadow: "0 0 200px rgba(0, 0, 0, 0.15)",
+  overflow: 'hidden',
   marginBottom: 40,
   marginTop: 60,
-};
+  maxHeight: '80vh',
+  width: '65%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
 
 const player: React.CSSProperties = {
-  width: "100%",
-};
+  width: '100%',
+}
 
 const Home: NextPage = () => {
-  const [text, setText] = useState<string>(defaultMyCompProps.title);
+  const [texts, setTexts] = useState(defaultVideoCompProps.titleTexts)
+  const [color, setColor] = useState(defaultVideoCompProps.titleColor)
 
-  const inputProps: z.infer<typeof CompositionProps> = useMemo(() => {
+  const inputProps: z.infer<typeof videoCompSchema> = useMemo(() => {
     return {
-      title: text,
-    };
-  }, [text]);
+      titleTexts: texts,
+      titleColor: color,
+    }
+  }, [texts])
 
   return (
     <div>
+      <h1 style={{ textAlign: 'center' }}>Remotion Video</h1>
       <div style={container}>
-        <div className="cinematics" style={outer}>
+        <div style={outer}>
           <Player
-            component={Main}
+            component={VideoComp}
             inputProps={inputProps}
-            durationInFrames={DURATION_IN_FRAMES}
+            durationInFrames={NEW_VIDEO_DURATION_IN_FRAMES}
             fps={VIDEO_FPS}
-            compositionHeight={VIDEO_HEIGHT}
-            compositionWidth={VIDEO_WIDTH}
+            compositionHeight={NEW_VIDEO_HEIGHT}
+            compositionWidth={NEW_VIDEO_WIDTH}
             style={player}
             controls
             autoPlay
             loop
           />
         </div>
-        <Box sx={{ p: 2}}>
-          <Input placeholder='add text'/>
-          <Input placeholder='add text'/>
-          <Input placeholder='add text'/>
+        <Box sx={{ p: 2 }}>
+          <Input placeholder='add text' />
+          <Input placeholder='add text' />
+          <Input placeholder='add text' />
         </Box>
-       
+        h
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
