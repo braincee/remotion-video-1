@@ -20,6 +20,7 @@ const container: React.CSSProperties = {
   marginBottom: 20,
   width: '100%',
   display: 'flex',
+  padding: 10,
 }
 
 const outer: React.CSSProperties = {
@@ -72,7 +73,6 @@ const Home: NextPage = () => {
           <Input placeholder='add text' />
           <Input placeholder='add text' />
         </Box>
-        h
       </div>
     </div>
   )
