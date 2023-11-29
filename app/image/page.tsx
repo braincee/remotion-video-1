@@ -12,7 +12,6 @@ import {
   VIDEO_FPS,
 } from '../../types/constants'
 import { z } from 'zod'
-import { Input, Box } from '@mui/joy'
 import { ImageComp } from '../../remotion/NewComp/Image/ImageComp'
 import { RenderImageControls } from '../../components/RenderImageControls'
 
@@ -21,12 +20,11 @@ const container: React.CSSProperties = {
   marginBottom: 20,
   display: 'flex',
   padding: 10,
+  marginTop: 60,
 }
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
-  marginBottom: 40,
-  marginTop: 60,
   maxHeight: '80vh',
   width: '65%',
   display: 'flex',
@@ -39,19 +37,29 @@ const player: React.CSSProperties = {
   width: '100%',
 }
 
+const control: React.CSSProperties = {
+  width: '35%',
+  padding: '10px',
+}
+
 const Image: NextPage = () => {
   const [text, setText] = useState<string>(defaultImageCompProps.titleTexts)
   const [color, setColor] = useState(defaultImageCompProps.titleColor)
+  const [pageHeading, setPageHeading] = useState(
+    defaultImageCompProps.pageHeading
+  )
 
   const inputProps: z.infer<typeof imageCompSchema> = useMemo(() => {
     return {
       titleTexts: text,
       titleColor: color,
+      pageHeading: pageHeading,
     }
-  }, [text])
+  }, [text, color, pageHeading])
 
   return (
     <div>
+      <h1 style={{ textAlign: 'center' }}>{pageHeading}</h1>
       <div style={container}>
         <div style={outer}>
           <Player
@@ -65,12 +73,15 @@ const Image: NextPage = () => {
             controls
           />
         </div>
-        <div style={{ width: '35%', padding: '10px' }}>
+        <div style={control}>
           <RenderImageControls
             text={text}
             setText={setText}
+            inputProps={inputProps}
             color={color}
             setColor={setColor}
+            pageHeading={pageHeading}
+            setPageHeading={setPageHeading}
           />
         </div>
       </div>

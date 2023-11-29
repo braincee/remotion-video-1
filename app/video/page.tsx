@@ -21,12 +21,11 @@ const container: React.CSSProperties = {
   width: '100%',
   display: 'flex',
   padding: 10,
+  marginTop: 60,
 }
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
-  marginBottom: 40,
-  marginTop: 60,
   maxHeight: '80vh',
   width: '65%',
   display: 'flex',
@@ -38,26 +37,30 @@ const outer: React.CSSProperties = {
 const player: React.CSSProperties = {
   width: '100%',
 }
+
 const control: React.CSSProperties = {
   width: '35%',
+  padding: '10px',
 }
 
 const Video: NextPage = () => {
   const [texts, setTexts] = useState(defaultVideoCompProps.titleTexts)
   const [color, setColor] = useState(defaultVideoCompProps.titleColor)
+  const [pageHeading, setPageHeading] = useState(
+    defaultVideoCompProps.pageHeading
+  )
 
   const inputProps: z.infer<typeof videoCompSchema> = useMemo(() => {
     return {
       titleTexts: texts,
       titleColor: color,
+      pageHeading: pageHeading,
     }
-  }, [texts])
-
-  console.log(color)
+  }, [texts, color, pageHeading])
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Remotion Video</h1>
+      <h1 style={{ textAlign: 'center' }}>{pageHeading}</h1>
       <div style={container}>
         <div style={outer}>
           <Player
@@ -73,12 +76,15 @@ const Video: NextPage = () => {
             loop
           />
         </div>
-        <div style={{ width: '35%', padding: '10px' }}>
+        <div style={control}>
           <RenderVideoControls
             texts={texts}
             setTexts={setTexts}
+            inputProps={inputProps}
             color={color}
             setColor={setColor}
+            pageHeading={pageHeading}
+            setPageHeading={setPageHeading}
           />
         </div>
       </div>
