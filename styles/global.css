@@ -28,11 +28,11 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #000000;
+        --background: #118291;
         --unfocused-border-color: #333;
         --focused-border-color: #888;
         --foreground: #fff;
-        --button-disabled-color: #111;
+        --button-disabled-color: #a19c9c;
         --geist-error: red;
         --subtitle: #8D8D8D
 
