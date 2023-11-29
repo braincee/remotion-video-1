@@ -56,3 +56,20 @@ input {
 input:focus {
     border-color: var(--focused-border-color);
 }
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        max-width: 1020px;
+        gap: 20px;
+    }
+}

@@ -1,3 +1,4 @@
+import { DropDown } from './DropDown'
 import { Input } from './Input'
 import { MyColorPicker } from './MyColorPicker'
 import { Spacing } from './Spacing'
@@ -19,15 +20,19 @@ export const RenderImageControls: React.FC<{
   return (
     <div style={controls}>
       <>
+      <DropDown text="Text">
         <Input setText={setText} text={text}></Input>
         <Spacing></Spacing>
         <Spacing></Spacing>
+      </DropDown>
       </>
-      <MyColorPicker
-        initialColor='#000'
-        description='Text Color'
-        setMyColor={setColor}
-      />
+      <DropDown text="Color">
+        <MyColorPicker
+          initialColor='#000'
+          description='Text Color'
+          setMyColor={setColor}
+        />
+      </DropDown>
     </div>
   )
 }

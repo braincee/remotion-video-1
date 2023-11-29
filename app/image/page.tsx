@@ -12,16 +12,9 @@ import {
   VIDEO_FPS,
 } from '../../types/constants'
 import { z } from 'zod'
-import { Input, Box } from '@mui/joy'
 import { ImageComp } from '../../remotion/NewComp/Image/ImageComp'
 import { RenderImageControls } from '../../components/RenderImageControls'
-
-const container: React.CSSProperties = {
-  margin: 'auto',
-  marginBottom: 20,
-  display: 'flex',
-  padding: 10,
-}
+import "../../styles/global.css"
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
@@ -52,7 +45,7 @@ const Image: NextPage = () => {
 
   return (
     <div>
-      <div style={container}>
+      <div className="container">
         <div style={outer}>
           <Player
             component={ImageComp}
@@ -65,7 +58,7 @@ const Image: NextPage = () => {
             controls
           />
         </div>
-        <div style={{ width: '35%', padding: '10px' }}>
+        <div style={{ width: '70%', padding: '10px' }}>
           <RenderImageControls
             text={text}
             setText={setText}

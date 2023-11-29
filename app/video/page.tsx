@@ -14,14 +14,8 @@ import {
 import { z } from 'zod'
 import { VideoComp } from '../../remotion/NewComp/Video/VideoComp'
 import { RenderVideoControls } from '../../components/RenderVideoControls'
+import '../../styles/global.css'
 
-const container: React.CSSProperties = {
-  margin: 'auto',
-  marginBottom: 20,
-  width: '100%',
-  display: 'flex',
-  padding: 10,
-}
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
@@ -58,7 +52,7 @@ const Video: NextPage = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Remotion Video</h1>
-      <div style={container}>
+      <div className="container">
         <div style={outer}>
           <Player
             component={VideoComp}
@@ -73,7 +67,7 @@ const Video: NextPage = () => {
             loop
           />
         </div>
-        <div style={{ width: '35%', padding: '10px' }}>
+        <div style={{ width: '70%', padding: '10px' }}>
           <RenderVideoControls
             texts={texts}
             setTexts={setTexts}

@@ -12,5 +12,5 @@ export default function VideoLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <section>{children}</section>
+  return <section className="display">{children}</section>
 }
