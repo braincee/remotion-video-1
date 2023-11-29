@@ -28,11 +28,11 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #000000;
+        --background: #118291;
         --unfocused-border-color: #333;
         --focused-border-color: #888;
         --foreground: #fff;
-        --button-disabled-color: #111;
+        --button-disabled-color: #a19c9c;
         --geist-error: red;
         --subtitle: #8D8D8D
 
@@ -55,4 +55,21 @@ input {
 
 input:focus {
     border-color: var(--focused-border-color);
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        max-width: 1020px;
+        gap: 20px;
+    }
 }

@@ -14,15 +14,7 @@ import {
 import { z } from 'zod'
 import { VideoComp } from '../../remotion/NewComp/Video/VideoComp'
 import { RenderVideoControls } from '../../components/RenderVideoControls'
-
-const container: React.CSSProperties = {
-  margin: 'auto',
-  marginBottom: 20,
-  width: '100%',
-  display: 'flex',
-  padding: 10,
-  marginTop: 60,
-}
+import '../../styles/global.css'
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
@@ -61,7 +53,7 @@ const Video: NextPage = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>{pageHeading}</h1>
-      <div style={container}>
+      <div className='container'>
         <div style={outer}>
           <Player
             component={VideoComp}
@@ -72,7 +64,6 @@ const Video: NextPage = () => {
             compositionWidth={NEW_VIDEO_WIDTH}
             style={player}
             controls
-            autoPlay
             loop
           />
         </div>

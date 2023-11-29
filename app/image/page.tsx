@@ -14,14 +14,7 @@ import {
 import { z } from 'zod'
 import { ImageComp } from '../../remotion/NewComp/Image/ImageComp'
 import { RenderImageControls } from '../../components/RenderImageControls'
-
-const container: React.CSSProperties = {
-  margin: 'auto',
-  marginBottom: 20,
-  display: 'flex',
-  padding: 10,
-  marginTop: 60,
-}
+import '../../styles/global.css'
 
 const outer: React.CSSProperties = {
   overflow: 'hidden',
@@ -60,7 +53,7 @@ const Image: NextPage = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>{pageHeading}</h1>
-      <div style={container}>
+      <div className='container'>
         <div style={outer}>
           <Player
             component={ImageComp}
