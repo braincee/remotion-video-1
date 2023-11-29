@@ -1,11 +1,8 @@
 'use client'
-import { z } from 'zod'
-import { videoCompSchema } from '../types/constants'
 
-import { Input } from './Input'
 import { Spacing } from './Spacing'
-import { useEffect, useState } from 'react'
 import { MyColorPicker } from './MyColorPicker'
+import { DropDown } from './DropDown'
 
 const textarea: React.CSSProperties = {
   resize: 'none',
@@ -25,8 +22,6 @@ export const RenderVideoControls: React.FC<{
   setTexts: React.Dispatch<React.SetStateAction<string[]>>
   setColor: React.Dispatch<React.SetStateAction<string>>
 }> = ({ texts, setTexts, color, setColor }) => {
-  const [singleText, setSingleText] = useState('')
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     textIndex: number
@@ -50,23 +45,26 @@ export const RenderVideoControls: React.FC<{
 
   return (
     <div style={controls}>
-      {texts?.map((text, index) => (
-        <div key={index}>
-          {/* <Input setText={setTexts} text={text}></Input> */}
-          <input
-            style={textarea}
-            value={text}
-            onChange={(e) => handleChange(e, index)}
-          />
-          <Spacing></Spacing>
-          <Spacing></Spacing>
-        </div>
-      ))}
-      <MyColorPicker
-        initialColor='#fff'
-        description='Text Color'
-        setMyColor={setColor}
-      />
+      <DropDown text='Text'>
+        {texts?.map((text, index) => (
+          <div key={index}>
+            <input
+              style={textarea}
+              value={text}
+              onChange={(e) => handleChange(e, index)}
+            />
+            <Spacing></Spacing>
+            <Spacing></Spacing>
+          </div>
+        ))}
+      </DropDown>
+      <DropDown text='Color'>
+        <MyColorPicker
+          initialColor='#fff'
+          description='Text Color'
+          setMyColor={setColor}
+        />
+      </DropDown>
     </div>
   )
 }
