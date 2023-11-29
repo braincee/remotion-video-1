@@ -27,14 +27,6 @@ export type State =
       status: 'done'
     }
 
-const wait = async (milliSeconds: number) => {
-  await new Promise<void>((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, milliSeconds)
-  })
-}
-
 export const useImageRendering = (
   id: string,
   inputProps: z.infer<typeof imageCompSchema>
